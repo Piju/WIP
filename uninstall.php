@@ -1,32 +1,22 @@
 <?php
-class wipUninstall{
+//if uninstall not called from WordPress exit
+if ( !defined( 'WP_UNINSTALL_PLUGIN' ) )
+    exit();
 
-    public function init(){
-        register_uninstall_hook( __FILE__, 'wip_uninstall' );
-    }
+// For Single site
+if ( !is_multisite() ) {
+    global $wpdb;
 
-    static function wip_uninstall() {
-        global $wpdb;
+    $table_image = $wpdb->prefix . "wip_image";
+    $table_points = $wpdb->prefix . "wip_points";
 
-        //if uninstall not called from WordPress exit
-        if ( !defined( 'WP_UNINSTALL_PLUGIN' ) )
-            exit();
+    $sql = "DROP TABLE IF EXISTS $table_image, $table_points";
+    $wpdb->query($sql);
 
-        // For Single site
-        if ( !is_multisite() ) {
-            global $wpdb;
-
-            $table_image = $wpdb->prefix . "wip_image";
-            $table_points = $wpdb->prefix . "wip_points";
-
-            $sql = "DROP TABLE ".$table_name.",".$table_points;
-            $wpdb->query($sql);
-        }
-        // For Multisite
-        else{
-        }
-    }
+    delete_option('wip_db_version');
 }
-
-$wip_uninstall = new wipUninstall();
-$wip_uninstall->init();
+// For Multisite
+else{
+    // For site options in multisite
+    delete_site_option( 'wip_db_version' );
+}

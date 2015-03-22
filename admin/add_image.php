@@ -33,7 +33,7 @@
     $wip = new WPInteractivePictures();
     $id = $wip->get_table_status('wip_image');
     
-    WPInteractivePictures::add_image_plan($id, $_POST['title'], $_POST['thumbnail']);
+    WPInteractivePictures::wip_add_image($id, $_POST['title'], $_POST['thumbnail']);
 
     wp_redirect( admin_url( 'admin.php?page=edit-image&id='.$id ) );
     exit;

@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WIP WP Interactive Images\n"
+"POT-Creation-Date: 2015-03-22 15:42+0100\n"
+"PO-Revision-Date: 2015-03-22 15:43+0100\n"
+"Last-Translator: Provost Pierre-julien <pierre-julien.provost@sa-cim.fr>\n"
+"Language-Team: Provost Pierre-julien <provost.pierrejulien@gmail.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\perso\\wp-content\\plugins\\wp-"
+"interactives-pictures\n"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/add_image.php:5
+msgid "Ajouter une image interactive"
+msgstr "Add an interactive picture"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/add_image.php:9
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:10
+msgid "Saisissez le titre de l'image ici"
+msgstr "Write the picture title here"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/add_image.php:16
+msgid "Uploader/modifier le plan"
+msgstr "Add/Edit attached media"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/add_image.php:44
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/class-admin.php:19
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:189
+msgid "Vous n'êtes pas autorisé à modifier cette partie du Back-office"
+msgstr "You are not allowed to edit this part in the back-office"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:6
+msgid "Editer une image interactive"
+msgstr "Edit an interactive picture"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:16
+msgid "Uploader/modifier l'image"
+msgstr "Add/Edit attached media"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:20
+msgid ""
+"Glissez/Déposez le marqueur pour ajouter un point sur votre image interactive"
+msgstr "Drag/Drop the cursor to add a point on your interactive picture"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:43
+msgid "Editer le contenu des points"
+msgstr "Edit points content"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:58
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:71
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:9
+msgid "Supprimer"
+msgstr "Delete"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:65
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:67
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:16
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:18
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/ajax.php:68
+msgid "Editer les infos du points"
+msgstr "Edit the points information"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:81
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:50
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:32
+msgid "Titre"
+msgstr "Title"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:93
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:44
+msgid "Visuel attaché"
+msgstr "Attachment"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:97
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:48
+msgid "Ajouter/Modifier le visuel"
+msgstr "Add/Edit attached media"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:111
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:62
+msgid "Icône du pointeur"
+msgstr "Pointer icon"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:124
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:75
+msgid "Couleur du pointeur"
+msgstr "Pointer color"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:136
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/inc/add-form.php:87
+msgid "Description"
+msgstr "Description"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/edit_image.php:154
+msgid "Il n'y a aucun contenu à modifier pour le moment"
+msgstr "There is no content to edit for the moment"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/error-message.php:4
+msgid "Un soucis s'est déroulé lors de cette action."
+msgstr "Oups ! A problem appeared during this action."
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:12
+msgid "image"
+msgstr "picture"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:13
+msgid "images"
+msgstr "pictures"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:20
+msgid "Il n'y a aucune image pour le moment."
+msgstr "There is no picture for the moment."
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:51
+msgid "Image"
+msgstr "Picture"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:52
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:164
+msgid "Images interactives"
+msgstr "Interactive pictures"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:164
+msgid "Ajouter"
+msgstr "Add"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/get_images.php:169
+msgid "Rechercher"
+msgstr "Search"
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/admin/success-message.php:4
+msgid "Mise à jour des informations effectuée avec succès."
+msgstr "Information was updated with success."
+
+#: C:\wamp\www\perso\wp-content\plugins\wp-interactives-pictures/frontend/class-shortcode.php:46
+msgid "Aucune image n'a été trouvé."
+msgstr "No picture has been found."

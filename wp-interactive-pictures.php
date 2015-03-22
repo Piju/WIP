@@ -29,12 +29,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
 * TODO:
-* Implémenter fonctionnalité mise à jour
 * Sécuriser l'ensemble du code
-* Ajouter le champs de sélection de curseur (API Font Awesome ?)
 * Réglage bug insertion éditeur texte Ajax
 * Création de 2,3 templates par défaut
+* Infos légales, description... du plugin
+* Implémenter fonctionnalité mise à jour
 * Bouton d'ajout dans l'éditeur de texte
+* Moteur de recherche
 **/
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -43,12 +44,14 @@ if ( ! function_exists( 'add_filter' ) ) {
     exit();
 }
 
-/*if ( ! defined( 'WIP_FILE' ) ) {
-    define( 'WIP_FILE', __FILE__ );
-}*/
-
 // Load WIP plugin
+define('WIP_VERSION', '1.0.0');
 define('WIP_DIR', plugin_dir_path(__FILE__));
-define('PLUGIN_PATH', plugins_url( '/wp-interactives-pictures/'));
+define('PLUGIN_PATH', plugins_url( '/wp-interactive-pictures/'));
+define('WIP_DB_VERSION', '1.0');
+define('WIP_DEFAULT_POINTER', 'fa fa-map-marker');
+define('WIP_DEFAULT_ICONPICKER_POINTER', 'fa-map-marker');
 
-require_once( WIP_DIR . '/wp-interactive-pictures-init.php' );
+require_once WIP_DIR . '/wp-interactive-pictures-init.php';
+
+register_activation_hook( __FILE__, array('WPInteractivePictures', 'wip_install') );

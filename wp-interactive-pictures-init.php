@@ -1,6 +1,4 @@
 <?php
-require_once WIP_DIR . 'install.php';
-require_once WIP_DIR . 'uninstall.php';
 require_once WIP_DIR . 'frontend/class-shortcode.php';
 
 /**
@@ -17,6 +15,53 @@ if ( is_admin() ) {
 
 if (!class_exists("WPInteractivePictures")) {
 	class WPInteractivePictures{
+
+		public function __construct() {
+			//add_action( 'init', array($this, 'app_output_buffer') );
+			add_action( 'init', array($this, 'wip_load_text_domain'), 1 );
+			add_action( 'admin_menu', array($this, 'wip_add_menu') );
+			add_action( 'admin_init', array($this, 'wip_add_scripts') );
+
+			//add_filter('mce_buttons', array($this,'wip_register_buttons') );
+			//add_filter( 'mce_external_plugins', array($this, 'wip_register_tinymce_javascript') );
+		}
+
+		static function wip_install() {
+			global $wpdb;
+			$charset_collate = $wpdb->get_charset_collate();
+			add_option( 'wip_db_version', WIP_DB_VERSION );
+
+			$table_image = $wpdb->prefix . "wip_image";
+			$table_points = $wpdb->prefix . "wip_points";
+
+			$sql = "CREATE TABLE $table_image (
+				id mediumint(9) NOT NULL AUTO_INCREMENT,
+				time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+				title tinytext NOT NULL,
+				id_thumbnail int(9),
+				PRIMARY KEY  id (id)
+			) $charset_collate;";
+
+			$sql .= "CREATE TABLE $table_points (
+				id mediumint(9) NOT NULL AUTO_INCREMENT,
+				time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+				coordinatesX float NOT NULL,
+				coordinatesY float NOT NULL,
+				title tinytext NOT NULL,
+				description text NOT NULL,
+				pointerClass varchar(50),
+				pointerColor varchar(7),
+				idImage int(9),
+				PRIMARY KEY  id (id)
+			) $charset_collate;";
+
+			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+			dbDelta( $sql );
+		}
+
+		/*public function app_output_buffer() {
+			ob_start();
+		}*/
 
 		/**
 		* Charge les différents fichiers de langue pour la traduction du plugin
@@ -68,34 +113,7 @@ if (!class_exists("WPInteractivePictures")) {
 			wp_die();
 		}
 
-		/**
-		* Sélection et affiche des points sur l'image
-		**/
-		public function wip_get_points($id){
-			global $wpdb;
-			if( !$id ) return;
-			$table_name = $wpdb->prefix . 'wip_points';
-			$table_join = $wpdb->prefix . 'wip_image';
-			$row = $wpdb->get_results( '
-				SELECT
-					'.$table_name.'.id,
-					'.$table_name.'.coordinatesX,
-					'.$table_name.'.coordinatesY,
-					'.$table_name.'.title,
-					'.$table_name.'.description,
-					'.$table_name.'.id_thumbnail,
-					'.$table_name.'.pointerClass,
-					'.$table_name.'.pointerColor,
-					'.$table_name.'.idImage
-				FROM '.$table_name.' 
-				INNER JOIN '.$table_join.' 
-				ON ('.$table_name.'.idImage = '.$table_join.'.id) 
-				WHERE idImage = '.$id);
-			return $row;
-			wp_die();
-		}
-
-		static function add_image_plan($id, $title, $id_thumbnail){
+		static function wip_add_image($id, $title, $id_thumbnail){
 			global $wpdb;
 
 			if( !$id ) return;
@@ -113,6 +131,36 @@ if (!class_exists("WPInteractivePictures")) {
 					'%d'
 				)
 			) or wp_die(mysql_error());
+
+			if( function_exists('icl_register_string') ){
+				icl_register_string('wip', 'image-title-'.$id, stripslashes($title));
+			}
+		}
+
+		static function wip_update_image($id, $title, $id_thumbnail){
+			global $wpdb;
+
+			if( !$id ) return;
+
+			$table_name = $wpdb->prefix . 'wip_image';
+
+			$wpdb->update(
+				$table_name,
+				array(
+					'title' => $title,
+					'id_thumbnail' => $id_thumbnail,
+				),
+				array(
+					'id' => $id
+				),
+				array(
+					'%s',
+					'%d',
+				),
+				array(
+					'%d'
+				)
+			);
 
 			if( function_exists('icl_register_string') ){
 				icl_register_string('wip', 'image-title-'.$id, stripslashes($title));
@@ -152,7 +200,34 @@ if (!class_exists("WPInteractivePictures")) {
 			}
 		}
 
-		static function add_infos_plan($id, $title, $description, $thumbnail, $pointer, $idImage){
+		/**
+		* Sélection et affiche des points sur l'image
+		**/
+		public function wip_get_points($id){
+			global $wpdb;
+			if( !$id ) return;
+			$table_name = $wpdb->prefix . 'wip_points';
+			$table_join = $wpdb->prefix . 'wip_image';
+			$row = $wpdb->get_results( '
+				SELECT
+					'.$table_name.'.id,
+					'.$table_name.'.coordinatesX,
+					'.$table_name.'.coordinatesY,
+					'.$table_name.'.title,
+					'.$table_name.'.description,
+					'.$table_name.'.id_thumbnail,
+					'.$table_name.'.pointerClass,
+					'.$table_name.'.pointerColor,
+					'.$table_name.'.idImage
+				FROM '.$table_name.' 
+				INNER JOIN '.$table_join.' 
+				ON ('.$table_name.'.idImage = '.$table_join.'.id) 
+				WHERE idImage = '.$id);
+			return $row;
+			wp_die();
+		}
+
+		static function wip_add_point_infos($id, $title, $description, $thumbnail, $pointerClass, $pointer, $idImage){
 			global $wpdb;
 
 			$table_name = $wpdb->prefix . 'wip_points';
@@ -163,7 +238,7 @@ if (!class_exists("WPInteractivePictures")) {
 					'title' => $title,
 					'description' => $description,
 					'id_thumbnail' => $thumbnail,
-					'pointerClass' => '',
+					'pointerClass' => $pointerClass,
 					'pointerColor' => $pointer,
 					'idImage' => $idImage,
 				),
@@ -189,6 +264,19 @@ if (!class_exists("WPInteractivePictures")) {
 			}
 		}
 
+		static function wip_remove_point_plan($id){
+			global $wpdb;
+
+			$table_name = $wpdb->prefix . 'wip_points';
+
+			$wpdb->delete( $table_name, array('id' => $id), $where_format = null );
+			if( function_exists('icl_unregister_string') ){
+				icl_unregister_string('wip', 'title-'.$id);
+				icl_unregister_string('wip', 'description-'.$id);
+			}
+
+		}
+
 		public function get_table_status($table_name){
 			global $wpdb;
 
@@ -206,13 +294,20 @@ if (!class_exists("WPInteractivePictures")) {
 
 		}
 
+		// add new buttons
+		public function wip_register_buttons($buttons) {
+			array_push($buttons, 'separator', 'myplugin');
+			return $buttons;
+		}
+
+		// Load the TinyMCE plugin : editor_plugin.js
+		public function wip_register_tinymce_javascript($plugin_array) {
+			$plugin_array['wip'] = PLUGIN_PATH . 'js/tinymce-plugin.js';
+			return $plugin_array;
+		}
+
 	}
 }
-
-function app_output_buffer() {
-	ob_start();
-}
-add_action('init', 'app_output_buffer');
 
 /**
 * Instancie la class
@@ -222,30 +317,10 @@ if (class_exists("WPInteractivePictures")) {
 	$wip = new WPInteractivePictures();
 }
 
-add_action( 'admin_menu', array($wip, 'wip_add_menu') );
-add_action( 'init', array($wip, 'wip_load_text_domain'), 1 );
-add_action( 'admin_init', array($wip, 'wip_add_scripts') );
-
+add_filter('set-screen-option', 'wip_table_set_option', 10, 3);
 function wip_table_set_option($status, $option, $value) {
 if ( 'wip_images_per_page' == $option ) return $value;
 
 return $status;
-}
-add_filter('set-screen-option', 'wip_table_set_option', 10, 3);
-
-// add new buttons
-add_filter('mce_buttons', 'wip_register_buttons');
-
-function wip_register_buttons($buttons) {
-   array_push($buttons, 'separator', 'myplugin');
-   return $buttons;
-}
-
-// Load the TinyMCE plugin : editor_plugin.js
-add_filter('mce_external_plugins', 'wip_register_tinymce_javascript');
-
-function wip_register_tinymce_javascript($plugin_array) {
-   $plugin_array['wip'] = PLUGIN_PATH . '/js/tinymce-plugin.js';
-   return $plugin_array;
 }
 ?>

@@ -47,7 +47,7 @@ class WIP_List_Table extends WP_List_Table {
   function get_columns(){
     $columns = array(
       'cb'          => '<input type="checkbox" />',
-      'title'       => __('Title'),
+      'title'       => __('Titre'),
       'id_thumbnail'=> __('Image'),
       'shortcode'   => __('Shortcode')
     );
@@ -67,8 +67,8 @@ class WIP_List_Table extends WP_List_Table {
 
   function get_bulk_actions($id) {
     $actions = array(
-      //'edit'      => sprintf('<a href="?page=%s&action=%s&image=%s">'.__('Edit').'</a>',$_REQUEST['page'],'edit',$id),
-      'delete'    => sprintf('<a href="?page=%s&action=%s&image=%s">'.__('Delete').'</a>',$_REQUEST['page'],'delete',$id)
+      //'edit'      => sprintf('<a href="?page=%s&action=%s&image=%s">'.__('Editer').'</a>',$_REQUEST['page'],'edit',$id),
+      'delete'    => sprintf('<a href="?page=%s&action=%s&image=%s">'.__('Supprimer').'</a>',$_REQUEST['page'],'delete',$id)
     );
     return $actions;
   }
@@ -166,7 +166,7 @@ function wip_list_page(){
     <form method="get">
       <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
       <?php
-        $wipListImage->search_box( __('Search'), 'search_id' );
+        $wipListImage->search_box( __('Rechercher'), 'search_id' );
         $wipListImage->display();
       ?>
     </form>
