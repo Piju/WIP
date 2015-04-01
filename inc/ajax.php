@@ -20,7 +20,7 @@ class wipAjax{
         'title' => '',
         'description' => '',
         'id_thumbnail' => '',
-        'pointerClass' => '',
+        'pointerClass' => WIP_DEFAULT_POINTER,
         'pointerColor' => '',
         'idImage' => $_POST['id']
       ),
@@ -61,7 +61,7 @@ class wipAjax{
     $sqlResults = mysql_query($sql) or die(mysql_error());
     $row = mysql_fetch_assoc($sqlResults);
 
-    $idCount = $row['Auto_increment']-1;
+    $idCount = $row['Auto_increment'];
     if( isset($p) ):
         $title = $p->title;
     else:

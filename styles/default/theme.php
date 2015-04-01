@@ -8,11 +8,17 @@
       $image_atts = wp_get_attachment_image_src( $p->id_thumbnail, 'full' );
       $title = $icl_t ? icl_t('wip', 'title-'.$p->id, $p->title) : $p->title;
       $description = $icl_t ? icl_t('wip', 'description-'.$p->id, $p->description) : $p->description;
+      
+      if( !empty($p->pointerClass) ){
+        $pointerClass = $p->pointerClass;
+      }else{
+        $pointerClass = WIP_DEFAULT_POINTER;
+      }
   ?>
     <div class="marker" data-id="<?php echo $p->id;?>" style="position: absolute; top: <?php echo $p->coordinatesY;?>%; left: <?php echo $p->coordinatesX;?>%;">
       <?php if( $p->title || $p->id_thumbnail || $p->description):?>
         <a href="#point-<?php echo $uniqid;?>-<?php echo $i;?>" data-lightbox="group:point-<?php echo $uniqid;?>-<?php echo $i;?>">
-          <i class="fa fa-map-marker"></i>
+          <i class="<?php echo $pointerClass;?>"></i>
         </a>
         <div style="display: none;">
           <div id="point-<?php echo $uniqid;?>-<?php echo $i;?>" class="point">
@@ -28,7 +34,7 @@
           </div>
         </div>
       <?php else:?>
-          <i class="fa fa-map-marker"></i>
+          <i class="<?php echo $pointerClass;?>"></i>
       <?php endif;?>
     </div>
   <?php

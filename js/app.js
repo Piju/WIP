@@ -3,12 +3,11 @@
     $('#title-prompt-text + input').on('focusin', function(){
       $(this).parent().find('#title-prompt-text').addClass('screen-reader-text');
     });
-    $('#title-prompt-text + input').on('focusout', function(){
-      $(this).parent().find('#title-prompt-text').removeClass('screen-reader-text');
-    });
 
-    $('[role="iconpicker"]').on('change', function(e) {
-      $('[role="iconpicker"]').closest('.input-group').find('input[type="text"]').val($('[role="iconpicker"]').data('prefix')+' '+e.icon);
+    $('[role="iconpicker"]').each(function(){
+      $(this).on('change', function(e) {
+        $(this).closest('.input-group').find('input[type="text"]').val($('[role="iconpicker"]').data('prefix')+' '+e.icon);
+      });
     });
 
     var offsetMap = $('.map').offset();
@@ -20,6 +19,12 @@
         var selector1 = $('#thumbnail-'+id);
         var selector2 = $('#row-'+id+' .thumbnail');
         e.preventDefault();
+
+        //If the uploader object has already been created, reopen the dialog
+        if (custom_uploader_2) {
+          custom_uploader_2.open();
+          return;
+        }
 
         //Extend the wp.media object
         custom_uploader_2 = wp.media.frames.file_frame = wp.media({
@@ -81,7 +86,8 @@
       containment: $('.map'),
       stop: function(event, ui) {
         var offsetXPos = ui.position.left;
-        var offsetYPos = ui.position.top-45;
+        //var offsetYPos = ui.position.top-45;
+        var offsetYPos = ui.position.top;
         drag(event, ui);
         $.ajax({
           url: ajax_object.ajaxurl,
@@ -92,13 +98,8 @@
             posY: parseInt(offsetYPos)/$('.map').height()*100,
             id: $('#map').data('id')
           },
-          success: function( data, id ){
-            $('[role="iconpicker"]').iconpicker();
-
-            console.log(id);
-
-            var init = tinymce.extend( {}, tinyMCEPreInit.mceInit[ 'description-107' ] );
-            try { tinymce.init( init ); } catch(e){}
+          success: function( data ){
+            $('.info').hide();
           }
         });
       }
@@ -131,13 +132,23 @@
             type: 'POST',
             dataType: "json",
             data:{
-              action: 'add_form_plan'
+              action: 'add_form_plan',
+              id: $('#map').data('id')
             },
             success: function( data ){
               $(data.content).insertBefore( '.edit .submit' );
               $('.edit .submit + .info').hide();
               $('.colorpicker').wpColorPicker();
               uploadImg('.add_image_button');
+
+              $('[role="iconpicker"]').each(function(){
+                $(this).iconpicker();
+                $(this).on('change', function(e) {
+                  $(this).closest('.input-group').find('input[type="text"]').val($('[role="iconpicker"]').data('prefix')+' '+e.icon);
+                });
+              });
+              
+              tinymce.execCommand( 'mceAddEditor', false, 'description-'+data['id'] );
             }
           });
         }

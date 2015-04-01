@@ -1,6 +1,5 @@
 <?php
   if ( current_user_can( 'manage_options' ) && isset( $_GET['id'] ) ){
-    $pointerClass = (isset($p->pointerClass)) ? $p->pointerClass : WIP_DEFAULT_POINTER;
 ?>
   <div class="wrap">
     <h2><?php _e('Editer une image interactive','wip');?></h2>
@@ -20,13 +19,14 @@
           <p class="lead"><?php _e('Glissez/Déposez le marqueur pour ajouter un point sur votre image interactive','wip');?></p>
           <div class="plan" style="position:relative;">
             <span class="marker original">
-              <i class="<?php echo $pointerClass;?>"></i>
+              <i class="<?php echo WIP_DEFAULT_POINTER;?>"></i>
             </span>
             <hr />
             <div id="map" class="map drop" data-id="<?php echo $_GET['id'];?>">
               <?php
                 echo wp_get_attachment_image( $imgID[0]->id_thumbnail, 'full' );
                 foreach($points as $k => $p):
+                  $pointerClass = (isset($p->pointerClass)) ? $p->pointerClass : WIP_DEFAULT_POINTER;
               ?>
                 <span id="marker-<?php echo $p->id;?>" class="marker drag" data-id="<?php echo $p->id;?>" style="position: absolute; top: <?php echo $p->coordinatesY;?>%; left: <?php echo $p->coordinatesX;?>%;">
                   <i class="<?php echo $pointerClass;?>" style="color:<?php echo $p->pointerColor;?>;"></i>
@@ -36,6 +36,7 @@
               ?>
             </div>
           </div>
+          <hr/>
           <div class="edit">
             <fieldset>
               <legend>
@@ -48,6 +49,14 @@
                 $count = count($points);
                 if( $count >= 1 ):
                   foreach($points as $k => $p):
+                    if( !empty($p->pointerClass) ){
+                      $pointerClass = explode(' ', trim($p->pointerClass));
+                      $dataIcon     = $pointerClass[1];
+                      $inputIcon    = $pointerClass[0].' '.$pointerClass[1];
+                    }else{
+                      $dataIcon     = WIP_DEFAULT_ICONPICKER_POINTER;
+                      $inputIcon    = WIP_DEFAULT_POINTER;
+                    }
                     $count = count($points);
               ?>
               <div class="panel-group" id="accordion-<?php echo $p->id;?>" role="tablist" aria-multiselectable="true">
@@ -113,9 +122,9 @@
                             </label>
                             <div class="input-group">
                               <span class="input-group-btn">
-                                  <button class="btn btn-default" data-cols="6" data-rows="5" role="iconpicker" data-prefix="fa" data-iconset="fontawesome" data-icon="<?php echo WIP_DEFAULT_ICONPICKER_POINTER;?>"></button>
+                                  <button class="btn btn-default" data-cols="6" data-rows="5" role="iconpicker" data-prefix="fa" data-iconset="fontawesome" data-icon="<?php echo $dataIcon;?>"></button>
                               </span>
-                              <input type="text" id="pointerClass-<?php echo $p->id;?>" class="form-control" value="<?php echo $pointerClass;?>" name="pointerClass-<?php echo $p->id;?>" />
+                              <input type="text" id="pointerClass-<?php echo $p->id;?>" class="form-control" value="<?php echo $inputIcon;?>" name="pointerClass-<?php echo $p->id;?>" />
                             </div>
                           </div>
                           <div class="form col-sm-4">

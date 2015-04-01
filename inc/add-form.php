@@ -6,7 +6,7 @@
     <div class="panel-heading" role="tab" id="heading-<?php echo $idCount;?>">
       <div class="row-actions visible">
         <span class="trash">
-          <a href="<?php echo admin_url( 'admin.php?page=edit-image&id='.$_GET['id'].'&action=delete&idPoint='.$idCount );?>" class="submitdelete pull-right"><?php _e('Supprimer','wip');?></a>
+          <a href="<?php echo admin_url( 'admin.php?page=edit-image&id='.$_POST['id'].'&action=delete&idPoint='.$idCount );?>" class="submitdelete pull-right"><?php _e('Supprimer','wip');?></a>
         </span>
       </div>
       <h4 class="panel-title">
@@ -42,7 +42,7 @@
               <label for="thumb-<?php echo $idCount;?>">
                 <strong>
                  <?php _e('Visuel attaché','wip');?>
-                </strong>
+               </strong>
               </label>
               <div class="input">
                 <input id="thumb-<?php echo $idCount;?>" class="add_image_button button" type="button" value="<?php _e('Ajouter/Modifier le visuel', 'wip');?>" data-id="<?php echo $idCount;?>" />
@@ -53,29 +53,29 @@
                   if( $idCount_thumbnail ):
                     echo wp_get_attachment_image( $idCount_thumbnail, 'thumbnail', '', array('class' => 'size-full aligncenter') );
                   endif;
-                ?>
+               ?>
               </div>
             </div>
             <div class="form col-sm-4">
               <label for="pointerClass-<?php echo $idCount;?>">
-                <strong>
+               <strong>
                   <?php _e('Icône du pointeur','wip');?>
                 </strong>
               </label>
               <div class="input-group">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" data-icon="<?php echo $p->pointerClass;?>" data-cols="6" data-rows="5" role="iconpicker" data-icon="fa-wifi" data-iconset="fontawesome"></button>
+                    <button class="btn btn-default" data-cols="6" data-rows="5" role="iconpicker" data-prefix="fa" data-icon="<?php echo $pointerClass;?>" data-iconset="fontawesome"></button>
                 </span>
-                <input type="text" id="pointerClass-<?php echo $idCount;?>" class="form-control" value="<?php echo $p->pointerClass;?>" name="pointerClass-<?php echo $idCount;?>" />
-              </div>
+                <input type="text" id="pointerClass-<?php echo $idCount;?>" class="form-control" value="<?php echo $pointerClass;?>" name="pointerClass-<?php echo $idCount;?>" />
+             </div>
             </div>
-            <div class="form col-sm-4">
+          <div class="form col-sm-4">
               <label>
-                <strong>
+               <strong>
                   <?php _e('Couleur du pointeur','wip');?>
                 </strong>
               </label>
-              <div class="input">
+             <div class="input">
                 <input class="colorpicker" type="text" value="<?php echo $p->pointerColor;?>" data-id="<?php echo $idCount;?>" name="color-<?php echo $idCount;?>" />
               </div>
             </div>
@@ -90,7 +90,7 @@
               <div class="input">
                 <textarea name="description-<?php echo $idCount;?>" id="description-<?php echo $idCount;?>" class="widefat"><?php echo stripslashes($p->description);?></textarea>
               </div>
-            </div>
+           </div>
           </div>
           <input type="hidden" value="<?php echo $idCount;?>" name="idPoint-<?php echo $idCount;?>" />
         </div>

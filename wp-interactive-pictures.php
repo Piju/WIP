@@ -29,11 +29,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
 * TODO:
-* Sécuriser l'ensemble du code
-* Réglage bug insertion éditeur texte Ajax
-* Création de 2,3 templates par défaut
 * Infos légales, description... du plugin
+* Sécuriser l'ensemble du code
+* Création de 2,3 templates par défaut
 * Implémenter fonctionnalité mise à jour
+* Choix taille image insérée
 * Bouton d'ajout dans l'éditeur de texte
 * Moteur de recherche
 **/
