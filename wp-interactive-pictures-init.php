@@ -281,15 +281,22 @@ if (!class_exists("WPInteractivePictures")) {
 			global $wpdb;
 
 			$table_name = $wpdb->prefix.$table_name;
+			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+			if ($mysqli->connect_errno) {
+				printf(__("Échec de la connexion : %s\n",'warp'), $mysqli->connect_error);
+				exit();
+			}
 
 			$sql = 'SHOW TABLE STATUS LIKE "'.$table_name.'"';
-			$sqlResults = mysql_query($sql) or die(mysql_error());
-			$row = mysql_fetch_assoc($sqlResults);
+			$sqlResults = $mysqli->query($sql) or die(mysqli_error());
+			$row = mysqli_fetch_assoc($sqlResults);
 
 			$idCount = $row['Auto_increment'];
 
 			return $idCount;
 
+			$mysqli->close();
 			wp_die();
 
 		}

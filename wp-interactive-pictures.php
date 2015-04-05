@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Wordpress interactive Pictures
-Version: 1.0
+Version: 1.0.1
 Plugin URI: http://www.provost-pierrejulien.com/
-Description: Wordpress Interactive Pictures vous permet d'intégrer des images annotées avec des épingles contenants des informations (Titre, images, textes).
+Description: Wordpress Interactive Pictures allows you to add annoted pictures with pushpins containing information (Title, picture, text, custom cursor).
 Author: Provost Pierre-julien
 Author URI: http://www.provost-pierrejulien.com/
 Text Domain: wip
@@ -11,7 +11,7 @@ Domain Path: /languages/
 License: GPL v3
 
 Wordpress Interactive Pictures
-Copyright (C) 2008-2014, Yoast BV - support@yoast.com
+Copyright (C) 2004-2015, Creative Web
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 }
 
 // Load WIP plugin
-define('WIP_VERSION', '1.0.0');
+define('WIP_VERSION', '1.0.1');
 define('WIP_DIR', plugin_dir_path(__FILE__));
 define('PLUGIN_PATH', plugins_url( '/wp-interactive-pictures/'));
 define('WIP_DB_VERSION', '1.0');
