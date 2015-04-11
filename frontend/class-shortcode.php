@@ -13,7 +13,7 @@ class wipShortcode{
     ob_start();
       extract(shortcode_atts(array(
         'id'      => 1,
-        'theme'   => 'default',
+        'theme'   => 'modal',
         'align'   => 'center',
         'uniqid'  => uniqid()
       ), $atts));
@@ -33,14 +33,14 @@ class wipShortcode{
         foreach($js_array as $js){
           $filename = pathinfo($js, PATHINFO_FILENAME);
 
-          wp_enqueue_script( $filename.'-'.$theme, PLUGIN_PATH . 'styles/'.$theme.'/js/'.$filename.'.js', array(), false, true );
+          wp_enqueue_script( $filename, PLUGIN_PATH . 'styles/'.$theme.'/js/'.$filename.'.js', array(), false, true );
         }
 
         foreach($css_array as $css){
           $filename = pathinfo($css, PATHINFO_FILENAME);
-          wp_enqueue_style( $filename.'-'.$theme, PLUGIN_PATH . 'styles/'.$theme.'/css/'.$filename.'.css' );
+          wp_enqueue_style( $filename, PLUGIN_PATH . 'styles/'.$theme.'/css/'.$filename.'.css' );
         }
-        wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' );
+        wp_enqueue_style( 'font-awesome', PLUGIN_PATH . 'css/font-awesome.min.css', array(), '4.2.0' );
 
       else:
         _e("Aucune image n'a été trouvé.", 'wip');

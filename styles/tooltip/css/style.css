@@ -11,6 +11,24 @@
   box-sizing: border-box;
 }
 
+/* Clearing
+ ========================================================================== */
+/*
+ * Micro clearfix
+* `table-cell` is used with `:before` because `table` creates a 1px gap when it becomes a flex item, only in Webkit
+ * `table` is used again with `:after` because `clear` only works with block elements.
+ * Note: `display: block` with `overflow: hidden` is currently not working in the latest Safari
+ */
+.uk-clearfix:before {
+  content: "";
+  display: table-cell;
+}
+.uk-clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .container {
   padding-left: 15px;
   padding-right: 15px;
@@ -62,4 +80,15 @@ img {
 
 [id="lightbox-content"] > div {
   background: #fff;
+}
+
+.tooltip {
+    background: none repeat scroll 0 0 #fff;
+    border: 3px solid #625A5A;
+    border-radius: 7px;
+    color: #625A5A;
+    font-size: 14px;
+    padding: 3px;
+    position: absolute;
+    z-index: 150;
 }

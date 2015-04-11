@@ -1,4 +1,4 @@
-<div id="map-<?php echo $uniqid;?>" class="map">
+<div class="map">
   <?php
     echo wp_get_attachment_image( $imgID[0]->id_thumbnail, 'full' );
     $i = 1;
@@ -17,21 +17,22 @@
   ?>
     <div class="marker" data-id="<?php echo $p->id;?>" style="position: absolute; top: <?php echo $p->coordinatesY;?>%; left: <?php echo $p->coordinatesX;?>%;">
       <?php if( $p->title || $p->id_thumbnail || $p->description):?>
-        <a href="#point-<?php echo $uniqid;?>-<?php echo $i;?>" data-lightbox="group:point-<?php echo $uniqid;?>-<?php echo $i;?>">
+        <a href="#" data-uk-modal="{target:'#point-<?php echo $uniqid;?>-<?php echo $i;?>'}">
           <i class="<?php echo $pointerClass;?>"></i>
         </a>
-        <div style="display: none;">
-          <div id="point-<?php echo $uniqid;?>-<?php echo $i;?>" class="point">
-            <p class="title">
-              <?php echo $title;?>
-            </p>
-            <a href="<?php echo $image_atts[0];?>" title="<?php echo $p->title;?>" class="thumbnail" data-lightbox="group:<?php echo $uniqid;?>">
+        <div id="point-<?php echo $uniqid;?>-<?php echo $i;?>" class="uk-modal">
+            <div class="uk-modal-dialog">
+              <a class="uk-modal-close uk-close"></a>
+              <div class="uk-modal-header">
+                <h2>
+                  <?php echo $title;?>
+                </h2>
+              </div>
               <?php echo wp_get_attachment_image( $p->id_thumbnail, 'medium' );?>
-            </a>
-            <div class="description">
-              <?php echo stripslashes($description);?>
+              <div class="description">
+                <?php echo stripslashes($description);?>
+              </div>
             </div>
-          </div>
         </div>
       <?php else:?>
           <i class="<?php echo $pointerClass;?>"></i>
