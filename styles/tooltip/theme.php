@@ -12,7 +12,7 @@
   ?>
     <div data-id="<?php echo $p->id;?>" style="position: absolute; top: <?php echo $p->coordinatesY;?>%; left: <?php echo $p->coordinatesX;?>%;">
       <?php if( $p->title || $p->id_thumbnail || $p->description):?>
-        <a href="#" data-uk-toggle="{target:'#point-<?php echo $uniqid;?>-<?php echo $i;?>'}">
+        <a href="#" <?php if( isset($p->pointerColor) ):?> style="color:<?php echo $p->pointerColor;?>;" <?php endif;?>data-uk-toggle="{target:'#point-<?php echo $uniqid;?>-<?php echo $i;?>'}">
           <i class="<?php echo $pointerClass;?>"></i>
         </a>
       <?php else:?>

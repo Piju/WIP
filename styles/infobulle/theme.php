@@ -17,7 +17,7 @@
   ?>
     <div class="marker" data-id="<?php echo $p->id;?>" style="position: absolute; top: <?php echo $p->coordinatesY;?>%; left: <?php echo $p->coordinatesX;?>%;">
       <?php if( $p->title || $p->id_thumbnail || $p->description):?>
-        <a href="#point-<?php echo $uniqid;?>-<?php echo $i;?>">
+        <a href="#point-<?php echo $uniqid;?>-<?php echo $i;?>" <?php if( isset($p->pointerColor) ):?> style="color:<?php echo $p->pointerColor;?>;" <?php endif;?>>
           <i class="<?php echo $pointerClass;?>"></i>
         </a>
         <div id="point-<?php echo $uniqid;?>-<?php echo $i;?>" class="point" style="display: none;">

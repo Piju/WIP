@@ -6,16 +6,11 @@ class wipAdminScript{
             return;
         }
 
-        wp_deregister_script('jquery');
-        wp_register_script('jquery', "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
         wp_enqueue_script('jquery');
-
-        wp_deregister_script("jQueryUI");
-        wp_register_script("jQueryUI","//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
-        wp_enqueue_script("jQueryUI");
+        wp_enqueue_script("jquery-ui-core");
 
         wp_deregister_script("bootstrap-js");
-        wp_register_script("bootstrap-js","//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js");
+        wp_enqueue_style( 'bootstrap-js', PLUGIN_PATH . 'js/bootstrap.min.js', WIP_VERSION, true );
         wp_enqueue_script("bootstrap-js");
 
         wp_deregister_script("fontawesome-iconset");
