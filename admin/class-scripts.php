@@ -6,11 +6,15 @@ class wipAdminScript{
             return;
         }
 
-        wp_enqueue_script('jquery');
-        wp_enqueue_script("jquery-ui-core");
+        //$GLOBALS['wp_scripts']
+
+        wp_enqueue_script('jquery', array('json2'));
+        wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-draggable');
+        wp_enqueue_script('jquery-ui-droppable');
 
         wp_deregister_script("bootstrap-js");
-        wp_enqueue_style( 'bootstrap-js', PLUGIN_PATH . 'js/bootstrap.min.js', WIP_VERSION, true );
+        wp_enqueue_script( 'bootstrap-js', PLUGIN_PATH . 'js/bootstrap.min.js', array('jquery'), WIP_VERSION, true );
         wp_enqueue_script("bootstrap-js");
 
         wp_deregister_script("fontawesome-iconset");
@@ -18,10 +22,10 @@ class wipAdminScript{
         wp_enqueue_script("fontawesome-iconset");
 
         wp_deregister_script("iconpicker");
-        wp_register_script("iconpicker",PLUGIN_PATH . "js/bootstrap-iconpicker.min.js", array('jquery'), false, true );
+        wp_register_script("iconpicker",PLUGIN_PATH . "js/bootstrap-iconpicker.min.js", array('jquery', 'fontawesome-iconset'), false, true );
         wp_enqueue_script("iconpicker");
 
-        wp_enqueue_script( 'app', PLUGIN_PATH . 'js/app.js', array('jquery', 'jQueryUI', 'wp-color-picker'), WIP_VERSION, true );
+        wp_enqueue_script( 'app', PLUGIN_PATH . 'js/app.js', array('jquery', 'jquery-ui-core', 'colorpicker', 'iconpicker'), WIP_VERSION, true );
         wp_localize_script( 'app', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
         wp_enqueue_media();
