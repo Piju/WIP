@@ -82,8 +82,12 @@ class WIP_List_Table extends WP_List_Table {
    **************************************************************************/
   function process_bulk_action() {
     if( 'delete'===$this->current_action() ) {
-      foreach($_GET['image'] as $image) {
-        WPInteractivePictures::delete_image_plan($image);
+      if( is_numeric($_GET['image']) ){
+        WPInteractivePictures::delete_image_plan($_GET['image']);
+      }else{
+        foreach($_GET['image'] as $image) {
+          WPInteractivePictures::delete_image_plan($image);
+        }
       }
 
       wp_redirect( admin_url( 'admin.php?page=wp-interactive-pictures&save=1' ) );
