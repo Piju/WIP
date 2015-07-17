@@ -21,7 +21,7 @@
       </div>
       <?php
         // Génère le bouton d'envoi et la vérification de sécurité WP
-        submit_button( __('Sauvegarder', 'wip' );
+        submit_button( __('Sauvegarder', 'wip') );
         wp_nonce_field( 'save', 'save' );
       ?>
     </form>
