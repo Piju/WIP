@@ -164,7 +164,7 @@
             <?php
               endif;
               // Génère le bouton d'envoi et la vérification de sécurité WP
-              submit_button( 'Mettre à jour' );
+              submit_button( __('Mettre à jour', 'warp') );
               wp_nonce_field( 'update', 'update' );
             ?>
           </div>
