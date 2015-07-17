@@ -26,7 +26,7 @@ class WIP_List_Table extends WP_List_Table {
     switch( $column_name ) {
       case 'id':
       case 'title':
-        return '<a href="/wp-admin/admin.php?page=edit-image&id='.(int)$item->id.'" title="Edit">'.stripslashes($item->$column_name).'</a></strong>'.$this->row_actions( $actions );
+        return '<a href="'.admin_url().'admin.php?page=edit-image&id='.(int)$item->id.'" title="Edit">'.stripslashes($item->$column_name).'</a></strong>'.$this->row_actions( $actions );
       case 'id_thumbnail':
         return wp_get_attachment_image( $item->$column_name, 'thumbnail', '', array('class' => 'size-full aligncenter') );
       case 'shortcode':
@@ -67,7 +67,7 @@ class WIP_List_Table extends WP_List_Table {
 
   function get_bulk_actions($id) {
     $actions = array(
-      //'edit'      => sprintf('<a href="?page=%s&action=%s&image=%s">'.__('Editer').'</a>',$_REQUEST['page'],'edit',$id),
+      'edit'      => sprintf('<a href="?page=%s&id=%s">'.__('Editer').'</a>','edit-image',$id),
       'delete'    => sprintf('<a href="?page=%s&action=%s&image=%s">'.__('Supprimer').'</a>',$_REQUEST['page'],'delete',$id)
     );
     return $actions;

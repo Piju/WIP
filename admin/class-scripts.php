@@ -24,6 +24,8 @@ class wipAdminScript{
         wp_deregister_script("iconpicker");
         wp_register_script("iconpicker",PLUGIN_PATH . "js/bootstrap-iconpicker.min.js", array('jquery', 'fontawesome-iconset'), false, true );
         wp_enqueue_script("iconpicker");
+        
+        wp_enqueue_script( 'wp-color-picker');
 
         wp_enqueue_script( 'app', PLUGIN_PATH . 'js/app.js', array('jquery', 'jquery-ui-core', 'colorpicker', 'iconpicker'), WIP_VERSION, true );
         wp_localize_script( 'app', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
@@ -39,6 +41,7 @@ class wipAdminScript{
 
         wp_enqueue_style( 'bootstrap', PLUGIN_PATH . 'css/bootstrap.min.css', WIP_VERSION, true );
         wp_enqueue_style( 'font-awesome', PLUGIN_PATH . 'icon-fonts/font-awesome-4.2.0/css/font-awesome.min.css"', WIP_VERSION, true );
+        wp_enqueue_style( 'wp-color-picker' );
         wp_enqueue_style( 'custom', PLUGIN_PATH . 'css/admin.css', WIP_VERSION, true );
     }
 }
