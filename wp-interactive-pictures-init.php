@@ -82,9 +82,9 @@ if (!class_exists("WPInteractivePictures")) {
 			$wipAdmin = new wipAdmin();
 
 			add_menu_page( 'WP Interactive Pictures', 'WP Interactive Pictures', 'manage_options', 'wp-interactive-pictures', array($wipAdmin, 'theme_list_page'), 'dashicons-location-alt', 23 );
-			add_submenu_page( '', 'Editer une image', 'Editer une image', 'manage_options', 'edit-image', array($wipAdmin, 'theme_edit_image_page') );
-			$hook = add_submenu_page( 'wp-interactive-pictures', 'Toutes les images', 'Toutes les images', 'manage_options', 'wp-interactive-pictures', array($wipAdmin, 'theme_list_page') );
-			add_submenu_page( 'wp-interactive-pictures', 'Ajouter une image', 'Ajouter une image', 'manage_options', 'add-image', array($wipAdmin, 'theme_add_image_page') );
+			add_submenu_page( '', __('Editer une image', 'wip'), __('Editer une image', 'wip'), 'manage_options', 'edit-image', array($wipAdmin, 'theme_edit_image_page') );
+			$hook = add_submenu_page( 'wp-interactive-pictures', __('Toutes les images', 'wip'), __('Toutes les images', 'wip'), 'manage_options', 'wp-interactive-pictures', array($wipAdmin, 'theme_list_page') );
+			add_submenu_page( 'wp-interactive-pictures', __('Ajouter une image', 'wip'), __('Ajouter une image', 'wip'), 'manage_options', 'add-image', array($wipAdmin, 'theme_add_image_page') );
 
 			add_action( "load-$hook", array($wipAdmin, 'wip_list_add_options') );
 		}

@@ -9,8 +9,8 @@ class WIP_List_Table extends WP_List_Table {
     global $status, $page, $wpdb;
 
     parent::__construct( array(
-      'singular'  => __( 'image', 'mylisttable' ),     //singular name of the listed records
-      'plural'    => __( 'images', 'mylisttable' ),   //plural name of the listed records
+      'singular'  => __( 'image', 'wip' ),     //singular name of the listed records
+      'plural'    => __( 'images', 'wip' ),   //plural name of the listed records
       'ajax'      => false        //does this table support ajax?
     ) );
 
@@ -47,9 +47,9 @@ class WIP_List_Table extends WP_List_Table {
   function get_columns(){
     $columns = array(
       'cb'          => '<input type="checkbox" />',
-      'title'       => __('Titre'),
-      'id_thumbnail'=> __('Image'),
-      'shortcode'   => __('Shortcode')
+      'title'       => __('Titre', 'wip'),
+      'id_thumbnail'=> __('Image', 'wip'),
+      'shortcode'   => __('Shortcode', 'wip')
     );
      return $columns;
   }
@@ -67,8 +67,8 @@ class WIP_List_Table extends WP_List_Table {
 
   function get_bulk_actions($id) {
     $actions = array(
-      'edit'      => sprintf('<a href="?page=%s&id=%s">'.__('Editer').'</a>','edit-image',$id),
-      'delete'    => sprintf('<a href="?page=%s&action=%s&image=%s">'.__('Supprimer').'</a>',$_REQUEST['page'],'delete',$id)
+      'edit'      => sprintf('<a href="?page=%s&id=%s">'.__('Editer', 'wip').'</a>','edit-image',$id),
+      'delete'    => sprintf('<a href="?page=%s&action=%s&image=%s">'.__('Supprimer', 'wip').'</a>',$_REQUEST['page'],'delete',$id)
     );
     return $actions;
   }
@@ -166,7 +166,7 @@ function wip_list_page(){
     <form method="get">
       <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
       <?php
-        $wipListImage->search_box( __('Rechercher'), 'search_id' );
+        $wipListImage->search_box( __('Rechercher', 'wip'), 'search_id' );
         $wipListImage->display();
       ?>
     </form>

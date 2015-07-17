@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WIP WP Interactive Images\n"
-"POT-Creation-Date: 2015-07-17 23:05+0200\n"
-"PO-Revision-Date: 2015-07-17 23:05+0200\n"
+"POT-Creation-Date: 2015-07-17 23:21+0200\n"
+"PO-Revision-Date: 2015-07-17 23:21+0200\n"
 "Last-Translator: Provost Pierre-julien <pierre-julien.provost@sa-cim.fr>\n"
 "Language-Team: Provost Pierre-julien <contact@provost-pierrejulien.com>\n"
 "Language: en\n"
@@ -27,6 +27,10 @@ msgstr "Write the picture title here"
 #: admin/add_image.php:16
 msgid "Uploader/modifier le plan"
 msgstr "Add/Edit attached media"
+
+#: admin/add_image.php:24
+msgid "Sauvegarder"
+msgstr "Save"
 
 #: admin/add_image.php:44 admin/class-admin.php:19 admin/edit_image.php:198
 msgid "Vous n'êtes pas autorisé à modifier cette partie du Back-office"
@@ -136,6 +140,18 @@ msgstr "Information was updated with success."
 #: frontend/class-shortcode.php:46
 msgid "Aucune image n'a été trouvé."
 msgstr "No picture has been found."
+
+#: wp-interactive-pictures-init.php:85
+msgid "Editer une image"
+msgstr "Edit a picture"
+
+#: wp-interactive-pictures-init.php:86
+msgid "Toutes les images"
+msgstr "All pictures"
+
+#: wp-interactive-pictures-init.php:87
+msgid "Ajouter une image"
+msgstr "Add a picture"
 
 #: wp-interactive-pictures-init.php:287
 #, php-format

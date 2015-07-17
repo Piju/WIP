@@ -21,7 +21,7 @@
       </div>
       <?php
         // Génère le bouton d'envoi et la vérification de sécurité WP
-        submit_button( 'Sauvegarder' );
+        submit_button( __('Sauvegarder', 'wip' );
         wp_nonce_field( 'save', 'save' );
       ?>
     </form>
@@ -41,5 +41,5 @@
 
 // Fin de condition sur les droits utilisateurs
 }else{
-  _e("Vous n'êtes pas autorisé à modifier cette partie du Back-office");
+  _e("Vous n'êtes pas autorisé à modifier cette partie du Back-office", "wip");
 }
