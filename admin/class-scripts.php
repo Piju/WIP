@@ -26,6 +26,10 @@ class wipAdminScript{
         wp_enqueue_script("iconpicker");
         
         wp_enqueue_script( 'wp-color-picker');
+        if(user_can_richedit()) {
+            wp_enqueue_script('tiny_mce');
+            wp_enqueue_script('wp_tiny_mce');
+        }
 
         wp_enqueue_script( 'app', PLUGIN_PATH . 'js/app.js', array('jquery', 'jquery-ui-core', 'colorpicker', 'iconpicker'), WIP_VERSION, true );
         wp_localize_script( 'app', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
