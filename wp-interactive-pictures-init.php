@@ -49,6 +49,7 @@ if (!class_exists("WPInteractivePictures")) {
 				coordinatesY float NOT NULL,
 				title tinytext NOT NULL,
 				description text NOT NULL,
+				id_thumbnail mediumint(9) NOT NULL,
 				pointerClass varchar(50),
 				pointerColor varchar(7),
 				idImage int(9),
@@ -284,7 +285,7 @@ if (!class_exists("WPInteractivePictures")) {
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 			if ($mysqli->connect_errno) {
-				printf(__("Échec de la connexion : %s\n",'warp'), $mysqli->connect_error);
+				printf(__("Échec de la connexion : %s\n",'wip'), $mysqli->connect_error);
 				exit();
 			}
 
