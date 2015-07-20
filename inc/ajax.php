@@ -55,8 +55,8 @@ class wipAjax{
 
   static function so_wp_ajax_function_add_form_plan(){
     global $wpdb;
-
     $table_name = $wpdb->prefix . 'wip_points';
+    mysql_query("USE ".DB_NAME);
     $sql = 'SHOW TABLE STATUS LIKE "'.$table_name.'"';
     $sqlResults = mysql_query($sql) or die(mysql_error());
     $row = mysql_fetch_assoc($sqlResults);

@@ -17,7 +17,7 @@ class WIP_List_Table extends WP_List_Table {
   }
 
   function no_items() {
-    _e( 'Il n\'y a aucune image pour le moment.' );
+    _e( 'Il n\'y a aucune image pour le moment.', 'wip' );
   }
 
   function column_default( $item, $column_name ) {
